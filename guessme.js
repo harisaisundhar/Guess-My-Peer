@@ -7,7 +7,7 @@ function Node(data, y, n) {
   var readlineSync = require('readline-sync');
   var fs = require("fs");
 
-  var words = ["That's great!", "You know my peers!", "Let's play again!", "One more try!"];
+  var words = ["That's great!", "Found you!", "Let's play again!", "One more try!"];
   var word = words[Math.floor(Math.random() * words.length)];  
 
   var thanks = ["Thanks!", "Nice one!"];

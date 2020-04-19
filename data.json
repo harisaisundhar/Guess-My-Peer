@@ -1,0 +1,15 @@
+{
+  "data": "Are you a nigga?",
+  "yes": {
+    "data": "A geek",
+    "yes": {
+      "data": "Niti"
+    },
+    "no": {
+      "data": "You narayana"
+    }
+  },
+  "no": {
+    "data": "You Karan"
+  }
+}
