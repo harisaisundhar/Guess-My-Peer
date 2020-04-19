@@ -7,7 +7,6 @@ function Node(data, y, n) {
   var readlineSync = require('readline-sync');
   var fs = require("fs");
 
-
   var words = ["That's great!", "You know my peers!", "Let's play again!", "One more try!"];
   var word = words[Math.floor(Math.random() * words.length)];  
 
@@ -27,5 +26,20 @@ function Node(data, y, n) {
   while (ask("Do you want to play?")) {
     node = root;
     play();
+  }
+  
+  function play() {
+    while (node.yes && node.no) {
+      if (ask(node.data)) {
+        node = node.yes;
+      } else {
+        node = node.no;
+      }
+    }
+    if (!ask("Is it " + node.data + "?")) {
+      train(node);
+    } else {
+      console.log(word);
+    }
   }
   
