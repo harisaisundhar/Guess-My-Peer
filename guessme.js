@@ -47,3 +47,22 @@ function Node(data, y, n) {
     var answer = readlineSync.question(question + " (y/n): ").toUpperCase();
     return (answer.charAt(0) == "Y");
   }
+
+  function train(node) {
+    var guess = node.data;
+    var answer = readlineSync.question("Ok, Who are you? ");
+    var question = readlineSync.question("Suggest a yes/no question to distinguish yourself " + guess + " from a " + answer + ".\n");
+    node.data = question;
+    if (ask("Answer for a " + answer + ": " + question)) {
+      node.yes = new Node(answer);
+      node.no = new Node(guess);
+      console.log(thank);
+      console.log ("Great! Now I know about " + answer + "s !");
+      console.log(playAgainLoad);
+    } else {
+      node.yes = new Node(guess);
+      node.no = new Node(answer);
+    }
+    var tree = JSON.stringify(root, null, 2);
+    fs.writeFileSync('data.json', tree);
+  }
