@@ -43,3 +43,7 @@ function Node(data, y, n) {
     }
   }
   
+  function ask(question) {
+    var answer = readlineSync.question(question + " (y/n): ").toUpperCase();
+    return (answer.charAt(0) == "Y");
+  }
