@@ -1,68 +1,57 @@
-function Node(data, y, n) {
-    this.data = data;
-    this.yes = y;
-    this.no = n;
-  }
-  
-  var readlineSync = require('readline-sync');
+  var print = require('readline-sync');
   var fs = require("fs");
 
-  var words = ["That's great!", "Found you!", "Let's play again!", "One more try!"];
-  var word = words[Math.floor(Math.random() * words.length)];  
+function Inp(data, y, n) {
+    this.data = data;
+    this.tru = y;
+    this.fal = n;
+  }
 
-  var thanks = ["Thanks!", "Nice one!"];
-  var thank = thanks[Math.floor(Math.random() * words.length)];
+  function play() {
+    while (temp.tru && temp.fal) {
+      if (ask(temp.data)) {
+        temp = temp.tru;
+      } else {
+        temp = temp.fal;
+      }
+    }
+    if (ask("Is it you " + temp.data + "?")) {
+        console.log("Mass ah !");
+    } else {
+        train(temp);
+    }
+  }
 
-  var playAgain = ["Let's play again!", "That was fun, let's play again!"]
-  var playAgainLoad = playAgain[Math.floor(Math.random() * words.length)];
-  
-  var tree = fs.readFileSync('data.json');
-  var root = JSON.parse(tree);
-  var node;
+  function ask(question) {
+    var answer = print.question(question + " (y/n): ").toUpperCase();
+    if(answer.charAt(0) == "Y"){
+        return true;
+    } else {
+        return false;
+    }
+  }
+
+  function train(temp) {
+    var guess = temp.data;
+    var answer = print.question("Ok, Who are you? ");
+    var question = print.question("Suggest a question to distinguish yourself " + guess + " from a " + answer + ".\n");
+    temp.data = question;
+    temp.tru = new Inp(answer);
+    temp.fal = new Inp(guess);
+    console.log("Nandrigal");
+    console.log ("Great! Now I know about you " + answer + " ");
+    console.log("Another Try");
+    var data = JSON.stringify(root, null, 2);
+    fs.writeFileSync('data.json', data);
+  }
+
+  var data = fs.readFileSync('data.json');
+  var root = JSON.parse(data);
+  var temp;
   
   console.log('Welcome to the game buddies!');
   
-  // Play the game
   while (ask("Do you want to play?")) {
-    node = root;
+    temp = root;
     play();
-  }
-  
-  function play() {
-    while (node.yes && node.no) {
-      if (ask(node.data)) {
-        node = node.yes;
-      } else {
-        node = node.no;
-      }
-    }
-    if (!ask("Is it " + node.data + "?")) {
-      train(node);
-    } else {
-      console.log(word);
-    }
-  }
-  
-  function ask(question) {
-    var answer = readlineSync.question(question + " (y/n): ").toUpperCase();
-    return (answer.charAt(0) == "Y");
-  }
-
-  function train(node) {
-    var guess = node.data;
-    var answer = readlineSync.question("Ok, Who are you? ");
-    var question = readlineSync.question("Suggest a yes/no question to distinguish yourself " + guess + " from a " + answer + ".\n");
-    node.data = question;
-    if (ask("Answer for a " + answer + ": " + question)) {
-      node.yes = new Node(answer);
-      node.no = new Node(guess);
-      console.log(thank);
-      console.log ("Great! Now I know about " + answer + "s !");
-      console.log(playAgainLoad);
-    } else {
-      node.yes = new Node(guess);
-      node.no = new Node(answer);
-    }
-    var tree = JSON.stringify(root, null, 2);
-    fs.writeFileSync('data.json', tree);
   }

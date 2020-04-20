@@ -1,15 +1,33 @@
 {
   "data": "Are you a nigga?",
-  "yes": {
+  "tru": {
     "data": "A geek",
-    "yes": {
+    "tru": {
       "data": "Niti"
     },
-    "no": {
-      "data": "You narayana"
+    "fal": {
+      "data": "Marana coder",
+      "tru": {
+        "data": "hemas"
+      },
+      "fal": {
+        "data": "You narayana"
+      }
     }
   },
-  "no": {
-    "data": "You Karan"
+  "fal": {
+    "data": "dhanadhanadhan",
+    "tru": {
+      "data": "mamu"
+    },
+    "fal": {
+      "data": "gadupudu",
+      "tru": {
+        "data": "pandu"
+      },
+      "fal": {
+        "data": "You Karan"
+      }
+    }
   }
 }
