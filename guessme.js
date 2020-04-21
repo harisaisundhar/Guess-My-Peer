@@ -1,12 +1,12 @@
   var print = require('readline-sync');
   var fs = require("fs");
 
-function Inp(data, y, n) {
+  function Inp(data, y, n) {
     this.data = data;
     this.tru = y;
     this.fal = n;
   }
-
+ 
   function play() {
     while (temp.tru && temp.fal) {
       if (ask(temp.data)) {
@@ -39,7 +39,7 @@ function Inp(data, y, n) {
     temp.tru = new Inp(answer);
     temp.fal = new Inp(guess);
     console.log("Nandrigal");
-    console.log ("Great! Now I know about you " + answer + " ");
+    console.log ("Great! Now I know about you " + answer);
     console.log("Another Try");
     var data = JSON.stringify(root, null, 2);
     fs.writeFileSync('data.json', data);
